@@ -1,4 +1,15 @@
 <script setup lang="js">
+/**
+ * Developer Registration Component
+ * 
+ * @component
+ * @name developer-registration
+ * @description A Vue.js component for registering a new developer with first and last name fields.
+ * @remarks
+ * This component provides a form for registering a new developer. It includes fields for first name and last name, 
+ * along with buttons to submit the registration, defer it, or clear the form.
+ * 
+ */
 import {ref} from "vue";
 
 const firstName = ref('');
@@ -7,6 +18,10 @@ const errorMessage = ref('');
 
 const emit = defineEmits(['developer-registered', 'registration-deferred']);
 
+/**
+ * Handles the submission of the registration form.
+ * Validates that at least one of the name fields is filled.
+ */
 function submitRegistrationRequest() {
   let submittedFirstName = firstName.value.toString().trim();
   let submittedLastName = lastName.value.toString().trim();
@@ -23,6 +38,10 @@ function submitRegistrationRequest() {
   }
 }
 
+/**
+ * Handles the deferral of the registration process.
+ * Emits an event indicating that registration has been deferred.
+ */
 function deferRegistration() {
   console.log('Deferring registration');
   emit('registration-deferred', {firstName: "", lastName: ""});
@@ -30,6 +49,9 @@ function deferRegistration() {
   errorMessage.value = "";
 }
 
+/**
+ * Clears the input fields and error message.
+ */
 function clearFields() {
   firstName.value = '';
   lastName.value = '';
